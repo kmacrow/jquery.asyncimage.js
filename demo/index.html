@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>jquery.asyncimage.js demo</title>
+		<style type="text/css">
+			#image {
+				margin: 60px auto;
+				width: 600px;
+				height: 600px;
+				font-family: sans-serif;
+				text-align: center;
+				border: 1px solid #eee;
+				background-size: cover;
+			}
+			#progress{
+				display: none;
+				margin-top: 60px;
+			}
+		</style>
+		<script src="http://code.jquery.com/jquery.min.js"></script>
+		<script src="../jquery.asyncimage.js"></script>
+		<script>
+			$(document).ready(function() {
+	
+				$('#image').asyncimage({
+					// load a big image
+					src: 'night.jpg',
+					// set background-image
+					background: true,
+					// start download handler
+					start: function() {
+						$('#progress').show();
+					},
+					// progress event handler
+					progress: function(p) {
+						$('#progress').val(p);
+					},
+					// success event handler
+					success: function() {
+						$('#progress').hide();
+					}
+				});
+	
+			})
+		</script>
+	</head>
+	<body>
+		<div id="image">
+			<progress id="progress" max="100" value="0"></progress>
+		</div>
+	</body>
+</html>
